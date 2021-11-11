@@ -11,28 +11,29 @@ import java.util.Scanner;
 */
 
 public class Solution {
-    public static void main(String[] args) throws IOException {
-        ArrayList<Integer> nums = new ArrayList<>();
-        String text;
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String txt = reader.readLine();
-        FileInputStream inputStream = new FileInputStream(txt);
-        BufferedInputStream buffer = new BufferedInputStream(inputStream);
-        while (buffer.available() > 0) {
-            char c = (char) buffer.read();
-            int x = Character.getNumericValue(c);
-            if (x != -1) {
-                text = (String) c;
-            }
-            nums.add(x);
-            System.out.println(c);
-        }
-        for (Integer x : nums) {
-            System.out.print(x);
-        }
-
-        reader.close();
-        buffer.close();
-        inputStream.close();
+    public static void main(String[] args) throws IOException{
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            String file = reader.readLine();
+            reader.close();
+            ArrayList<Integer> numbs = new ArrayList<Integer>();
+                BufferedReader bufRead = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+                while (bufRead.ready()) {
+                    numbs.add(Integer.parseInt(bufRead.readLine()));
+                }
+                for (int i = 0; i < numbs.size(); i++) {
+                    for (int j = i + 1; j < numbs.size(); j++) {
+                        if (numbs.get(i) > numbs.get(j)) {
+                            int tmp = numbs.get(i);
+                            numbs.set(i, numbs.get(j));
+                            numbs.set(j, tmp);
+                        }
+                    }
+                }
+                for (Integer x : numbs) {
+                    if (x % 2 == 0) {
+                        System.out.println(x);
+                    }
+                }
+                bufRead.close();
     }
 }
