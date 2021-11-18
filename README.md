@@ -1,2 +1,2 @@
 # Java_Rush
-Problems solved on the JavaRush course
+Tasks solved on the JavaRush course
